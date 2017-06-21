@@ -11,20 +11,20 @@ const colorStyle = API.color;
 const Home = TabNavigator({
   Chat: {
     screen: Chat,
-    navigationOptions: ()=> TabOptions(tabs.chat.title,TABS.chat.imgUrl,colorStyle.dark),
+    navigationOptions: ()=> TabOptions(tabs.chat.title,TABS.chat.imgUrl,colorStyle.dark,colorStyle.active),
   },
   Contact: {
     screen: Contact,
-    navigationOptions: ()=> TabOptions(tabs.contact.title,TABS.contact.imgUrl,colorStyle.dark),
+    navigationOptions: ()=> TabOptions(tabs.contact.title,TABS.contact.imgUrl,colorStyle.dark,colorStyle.active),
   },
   Find: {
     screen: Find,
-    navigationOptions: ()=> TabOptions(tabs.find.title,tabs.find.imgUrl,colorStyle.dark),
+    navigationOptions: ()=> TabOptions(tabs.find.title,tabs.find.imgUrl,colorStyle.dark,colorStyle.active),
 
   },
   Mine: {
     screen: Mine,
-    navigationOptions: ()=> TabOptions(tabs.mine.title,tabs.mine.imgUrl,colorStyle.dark,'我的'),
+   navigationOptions: ()=> TabOptions(tabs.mine.title,tabs.mine.imgUrl,colorStyle.dark,colorStyle.active,'我的'),
   },
 }, {
     animationEnabled: false, // 切换页面时是否有动画效果
@@ -47,14 +47,13 @@ const Home = TabNavigator({
       },
     },
   });
-const TabOptions = (tabBarTitle,normalImage,olderColor,headTitle) => {
-    // console.log(navigation);
+const TabOptions = (tabBarTitle,normalImage,olderColor,activeColor,headTitle) => {
     const tabBarLabel = tabBarTitle;
     const tabBarIcon = (({tintColor,focused})=> {
         return(
             <Image
                 source={normalImage}
-                style={[styles.tabBarIcon, {tintColor: !focused?olderColor:'green'}]}
+                style={[styles.tabBarIcon, {tintColor: !focused?olderColor:activeColor}]}
             />
         )
     });
