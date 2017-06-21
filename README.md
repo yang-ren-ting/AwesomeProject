@@ -1,6 +1,6 @@
 ## react-app 学习之路
 
-##TabNavigator的运用
+### TabNavigator的运用
 ```
 const Home = TabNavigator({
 Chat: {
