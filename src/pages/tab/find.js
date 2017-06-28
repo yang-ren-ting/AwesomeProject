@@ -22,6 +22,19 @@ export default class Find extends React.Component {
           navigate('Other', { name: 'Jane' })
         }
       />
+       <FlatList
+          data={[
+            {key: 'Devin'},
+            {key: 'Jackson'},
+            {key: 'James'},
+            {key: 'Joel'},
+            {key: 'John'},
+            {key: 'Jillian'},
+            {key: 'Jimmy'},
+            {key: 'Julie'},
+          ]}
+          renderItem={({item}) => <Text >{item.key}</Text>}
+        />
       </View>
     );
     

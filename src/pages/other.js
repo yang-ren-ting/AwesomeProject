@@ -17,7 +17,19 @@ export default class Other extends React.Component {
   render() {
     return (
       <View>
-        <Text>单独其他页面</Text>
+       <FlatList
+          data={[
+            {key: 'Devin'},
+            {key: 'Jackson'},
+            {key: 'James'},
+            {key: 'Joel'},
+            {key: 'John'},
+            {key: 'Jillian'},
+            {key: 'Jimmy'},
+            {key: 'Julie'},
+          ]}
+          renderItem={({item}) => <Text >{item.key}</Text>}
+        />
       </View>
     );
   }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {StyleSheet,Image} from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
-import { TABS ,API} from '../../config/config'
-import Chat  from './tab/chat';
+import { TABS, API } from '../../config/config'
+import Chat from './tab/chat';
 import Contact from './tab/contact';
 import Find from './tab/find';
 import Mine from './tab/mine';
@@ -11,20 +11,20 @@ const colorStyle = API.color;
 const Home = TabNavigator({
   Chat: {
     screen: Chat,
-    navigationOptions: ()=> TabOptions(tabs.chat.title,TABS.chat.imgUrl,colorStyle.dark,colorStyle.active),
+    path:'/chat',
+    navigationOptions: () => TabOptions(tabs.chat.title, TABS.chat.imgUrl, colorStyle.dark, colorStyle.active),
   },
   Contact: {
     screen: Contact,
-    navigationOptions: ()=> TabOptions(tabs.contact.title,TABS.contact.imgUrl,colorStyle.dark,colorStyle.active),
+    navigationOptions: () => TabOptions(tabs.contact.title, TABS.contact.imgUrl, colorStyle.dark, colorStyle.active),
   },
   Find: {
     screen: Find,
     navigationOptions: ()=> TabOptions(tabs.find.title,tabs.find.imgUrl,colorStyle.dark,colorStyle.active),
-
   },
-  Mine: {
+   Mine: {
     screen: Mine,
-   navigationOptions: ()=> TabOptions(tabs.mine.title,tabs.mine.imgUrl,colorStyle.dark,colorStyle.active,'我的'),
+    navigationOptions: () => TabOptions(tabs.mine.title, tabs.mine.imgUrl, colorStyle.dark, colorStyle.active, '我的'),
   },
 }, {
     animationEnabled: false, // 切换页面时是否有动画效果
@@ -47,29 +47,30 @@ const Home = TabNavigator({
       },
     },
   });
-const TabOptions = (tabBarTitle,normalImage,olderColor,activeColor,headTitle) => {
-    const tabBarLabel = tabBarTitle;
-    const tabBarIcon = (({tintColor,focused})=> {
-        return(
-            <Image
-                source={normalImage}
-                style={[styles.tabBarIcon, {tintColor: !focused?olderColor:activeColor}]}
-            />
-        )
-    });
-    const headerTitle = !headTitle? '微Q' :headTitle;
-    const headerTitleStyle = {fontSize:16,color:'white',alignSelf:'center'};
-    // header的style
-    const headerStyle = {backgroundColor:'#999'};
-    const tabBarVisible = true;
-    const header = null;
-    return {tabBarLabel,tabBarIcon,headerTitle,headerTitleStyle,headerStyle,tabBarVisible};
+const TabOptions = (tabBarTitle, normalImage, olderColor, activeColor, headTitle) => {
+  const tabBarLabel = tabBarTitle;
+  const tabBarIcon = (({ tintColor, focused }) => {
+    return (
+      <Image
+        source={normalImage}
+        style={[styles.tabBarIcon, { tintColor: !focused ? olderColor : activeColor }]}
+      />
+    )
+  });
+  const headerTitle = !headTitle ? '微Q' : headTitle;
+  const headerTitleStyle = { fontSize: 16, color: 'white', alignSelf: 'center' };
+  // header的style
+  const headerStyle = { backgroundColor: '#999', height: 50 };
+  const tabBarVisible = true;
+  const header = null;
+  return { tabBarLabel, tabBarIcon, headerTitle, headerTitleStyle, headerStyle, tabBarVisible,header };
 };
 export default Home;
 const styles = StyleSheet.create({
   tabBarIcon: {
-    width: 20,
-    height: 20
+    width: 15,
+    height: 15
   },
 });
+
 

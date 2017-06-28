@@ -11,19 +11,14 @@ import {
   Image
 } from 'react-native';
 import { StackNavigator ,TabNavigator} from 'react-navigation';
+import Search from '../../components/header_search'
 export default class Chat extends React.Component {
   render() {
-    const { navigate } = this.props.navigation;
+    //const { navigate } = this.props.navigation;
     return (
       <View>
-        <Text>聊天页面</Text>
-       <Image source={require('../../../image/chat.png')} />
-         <Button
-        title="Go to Jane's profile"
-        onPress={() =>
-          navigate('Other', { name: 'Jane' })
-        }
-      />
+        <Search></Search>
+      
       </View>
     );
     
