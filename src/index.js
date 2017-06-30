@@ -5,7 +5,14 @@ import Home  from './pages/tabs';
 import Other from './pages/other'
 const AwesomeProject = StackNavigator({
   Home: { screen: Home },
-  Other: { screen: Other },
+  Other: { 
+    screen: Other,
+    navigationOptions:{
+      //header:null
+       title: '其他',
+       visible:false
+    }
+   },
 });
 
 // const styles = StyleSheet.create({

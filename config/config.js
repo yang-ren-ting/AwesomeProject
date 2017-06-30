@@ -22,3 +22,47 @@ export const API = {
         active:'green',
     }
 }
+
+//可滑动的菜单
+export const MENU = [
+    {
+        title:"京东超市",
+        imgurl:require('../image/menu/jdcs.png')
+    },
+    {
+        title:" 全球购",
+        imgurl:require('../image/menu/qqg.png')
+    },
+    {
+        title:"服装城",
+        imgurl:require('../image/menu/jdcs.png')
+    },
+    {
+        title:"京东生鲜",
+        imgurl:require('../image/menu/jdcs.png')
+    },
+    {
+        title:"京东到家",
+        imgurl:require('../image/menu/jddj.png')
+    },
+    {
+        title:"充值缴费",
+        imgurl:require('../image/menu/czjf.png')
+    },
+    {
+        title:"领京豆",
+        imgurl:require('../image/menu/ljd.png')
+    },
+    {
+        title:"领券",
+        imgurl:require('../image/menu/lq.png')
+    },
+    {
+        title:"惠赚钱",
+        imgurl:require('../image/menu/hzq.png')
+    },
+    {
+        title:"物流查询",
+        imgurl:require('../image/menu/wlcx.png')
+    },
+]

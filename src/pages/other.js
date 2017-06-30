@@ -1,36 +1,62 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  ScrollView,
-  FlatList,
-  Button
-} from 'react-native';
+    AppRegistry,
+    StyleSheet,
+    Text,
+    Image,
+    TouchableOpacity,
+    ViewPagerAndroid,
+    Navigator,
+    View
+    } from 'react-native';
+
+import Swiper from 'react-native-swiper';
 import { StackNavigator ,TabNavigator} from 'react-navigation';
 export default class Other extends React.Component {
-  static navigationOptions = {
-    title: '其他',
-  };
+ 
   render() {
     return (
-      <View>
-       <FlatList
-          data={[
-            {key: 'Devin'},
-            {key: 'Jackson'},
-            {key: 'James'},
-            {key: 'Joel'},
-            {key: 'John'},
-            {key: 'Jillian'},
-            {key: 'Jimmy'},
-            {key: 'Julie'},
-          ]}
-          renderItem={({item}) => <Text >{item.key}</Text>}
-        />
-      </View>
+      <Swiper style={styles.wrapper} >
+        <View style={styles.slide1}>
+          <Text style={styles.text}>Hello Swiper</Text>
+        </View>
+        <View style={styles.slide2}>
+          <Text style={styles.text}>Beautiful</Text>
+        </View>
+        <View style={styles.slide3}>
+          <Text style={styles.text}>And simple</Text>
+        </View>
+      </Swiper>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    marginBottom:100
+  },
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9DD6EB',
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5',
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+  }
+});
+
