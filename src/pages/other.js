@@ -10,7 +10,7 @@ import {
     View
     } from 'react-native';
 
-import Swiper from 'react-native-swiper';
+import Swiper from 'react-native-swiper2';
 import { StackNavigator ,TabNavigator} from 'react-navigation';
 export default class Other extends React.Component {
  
@@ -33,7 +33,7 @@ export default class Other extends React.Component {
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginBottom:100
+    marginBottom:100,
   },
   slide1: {
     flex: 1,

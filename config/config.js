@@ -35,11 +35,11 @@ export const MENU = [
     },
     {
         title:"服装城",
-        imgurl:require('../image/menu/jdcs.png')
+        imgurl:require('../image/menu/fzc.png')
     },
     {
         title:"京东生鲜",
-        imgurl:require('../image/menu/jdcs.png')
+        imgurl:require('../image/menu/jdsx.png')
     },
     {
         title:"京东到家",

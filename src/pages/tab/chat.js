@@ -20,10 +20,10 @@ export default class Chat extends React.Component {
     //const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-          <Search/>
-          <Banner/>
-          {/*<Menu style= {styles.cont}/>*/}
-         {/*<Text style={styles.cont}>测试</Text>*/}
+          <Search />
+          <Banner />
+          <Menu />
+         <Text style={{marginTop:400}}>测试</Text>
       </View>
     );
 
@@ -31,10 +31,12 @@ export default class Chat extends React.Component {
 }
 const styles = StyleSheet.create({
   container: {
-     flexDirection: 'column',
+   flexDirection: 'column',
   },
   cont: {
-   marginTop: Platform.OS === 'ios' ? 68 : 48, 
-   flex:1
+   //marginTop: Platform.OS === 'ios' ? 68 : 48, 
+  //flex:1,
+  height:200,
+  marginTop:300
   }
 })
