@@ -40,7 +40,7 @@ const Home = TabNavigator({
       },
       style: {
         backgroundColor: '#fff', // TabBar 背景色
-        // height: 44
+         height: 44
       },
       labelStyle: {
         fontSize: 12, // 文字大小
@@ -58,12 +58,12 @@ const TabOptions = (tabBarTitle, normalImage, olderColor, activeColor, headTitle
     )
   });
   const headerTitle = !headTitle ? '微Q' : headTitle;
-  const headerTitleStyle = { fontSize: 16, color: 'white', alignSelf: 'center' };
+  const headerTitleStyle = { fontSize: 16, color: 'red', alignSelf: 'center' };
   // header的style
   const headerStyle = { backgroundColor: '#999', height: 50 };
   const tabBarVisible = true;
-  const header = null;
-  return { tabBarLabel, tabBarIcon, headerTitle, headerTitleStyle, headerStyle, tabBarVisible,header };
+  //const header = null;
+  return { tabBarLabel, tabBarIcon, headerTitle, headerTitleStyle, headerStyle, tabBarVisible };
 };
 export default Home;
 const styles = StyleSheet.create({

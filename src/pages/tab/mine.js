@@ -11,13 +11,16 @@ import {
 } from 'react-native';
 import { StackNavigator ,TabNavigator} from 'react-navigation';
 export  default class Mine extends React.Component {
+  static navigationOptions = {
+    title: '个人中心',
+   
+  };
   render() {
-    const { navigate } = this.props.navigation;
+    //const { navigate } = this.props.navigation;
     return (
       <View>
-        <Text>聊天页面   
-        </Text>
-         <FlatList
+        <Text>聊天页面   </Text>
+         {/*<FlatList
           data={[
             {key: 'Devin'},
             {key: 'Jackson'},
@@ -29,7 +32,7 @@ export  default class Mine extends React.Component {
             {key: 'Julie'},
           ]}
           renderItem={({item}) => <Text >{item.key}</Text>}
-        />
+        />*/}
       </View>
     );
     

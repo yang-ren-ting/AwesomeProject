@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#999999',  
       //  paddingRight:5,  
         paddingBottom:5,  
+        height:160
     },  
     page: {  
         width: '100%',//设备宽(只是一种实现，此处多余)  
