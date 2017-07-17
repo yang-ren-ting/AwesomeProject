@@ -11,7 +11,7 @@ const colorStyle = API.color;
 const Home = TabNavigator({
   Chat: {
     screen: Chat,
-    path:'/chat',
+    path: '/chat',
     navigationOptions: () => TabOptions(tabs.chat.title, TABS.chat.imgUrl, colorStyle.dark, colorStyle.active),
   },
   Contact: {
@@ -20,9 +20,9 @@ const Home = TabNavigator({
   },
   Find: {
     screen: Find,
-    navigationOptions: ()=> TabOptions(tabs.find.title,tabs.find.imgUrl,colorStyle.dark,colorStyle.active),
+    navigationOptions: () => TabOptions(tabs.find.title, tabs.find.imgUrl, colorStyle.dark, colorStyle.active),
   },
-   Mine: {
+  Mine: {
     screen: Mine,
     navigationOptions: () => TabOptions(tabs.mine.title, tabs.mine.imgUrl, colorStyle.dark, colorStyle.active, '个人中心'),
   },
@@ -40,7 +40,7 @@ const Home = TabNavigator({
       },
       style: {
         backgroundColor: '#fff', // TabBar 背景色
-         height: 44
+        height: 44
       },
       labelStyle: {
         fontSize: 12, // 文字大小
