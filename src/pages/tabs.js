@@ -24,7 +24,7 @@ const Home = TabNavigator({
   },
    Mine: {
     screen: Mine,
-    navigationOptions: () => TabOptions(tabs.mine.title, tabs.mine.imgUrl, colorStyle.dark, colorStyle.active, '我的'),
+    navigationOptions: () => TabOptions(tabs.mine.title, tabs.mine.imgUrl, colorStyle.dark, colorStyle.active, '个人中心'),
   },
 }, {
     animationEnabled: false, // 切换页面时是否有动画效果

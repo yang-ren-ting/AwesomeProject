@@ -1,62 +1,119 @@
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  Image,
-  TouchableOpacity,
-  ViewPagerAndroid,
-  Navigator,
-  View
-} from 'react-native';
+import React,{ Component } from 'react';
+import { Platform,Image,MapView,StatusBar,StyleSheet,Text,TouchableHighlight,View,Dimensions } from 'react-native';
+//import Util from './utils';
 import Icon from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Swiper from 'react-native-swiper2';
-import { StackNavigator, TabNavigator } from 'react-navigation';
+var  deviceWidth = Dimensions.get('window').width;
+var deviceHeight = Dimensions.get('window').height;
+export class Map extends  React.Component{
+  static defaultProps = {
+      mapType: 'standard',
+      showsUserLocation: false,
+      followUserLocation: false,
+  }; 
 
-export default class Other extends React.Component {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+      mapType: React.PropTypes.oneOf(['standard', 'satellite','hybrid']),
+      // mapStyle: View.PropTypes.style,
+      showsUserLocation: React.PropTypes.bool.isRequired,
+      followUserLocation: React.PropTypes.bool.isRequired,
+  };
 
+  constructor() {
+    super();
+    this.state = {
+      isFirstLoad: true,
+      mapRegion: undefined,
+      annotations: [],
+    };
   }
 
-  
-  render() {
-    return (
-      <View >
-        <Icon
-          name="ios-heart"   //图片名连接,可以到这个网址搜索:http://ionicons.com/, 使用时:去掉前面的 "icon-" !!!!
-          size={30}   //图片大小
-          color="red"  //图片颜色
-        />
-      </View>
+  _getAnnotations(region) {
+    return [{
+      longitude: region.longitude,
+      latitude: region.latitude,
+      title: 'You Are Here',
+    }];
+  }
 
-    );
+  _onRegionChangeComplete(region) {
+    if (this.state.isFirstLoad) {
+      this.setState({
+        annotations: this._getAnnotations(region),
+        isFirstLoad: false,
+      });
+    }
+  }
+
+  render() {
+    return(
+      <View>
+        <MapView
+          style={this.props.mapStyle} 
+          mapType = {this.props.mapType}
+          showsUserLocation={this.props.showsUserLocation}
+          followUserLocation={this.props.followUserLocation}
+          onRegionChangeComplete={(region) => this._onRegionChangeComplete(region)}
+          region={this.state.mapRegion}
+          annotations={this.state.annotations}/>
+      </View>
+    )
   }
 }
 
-const styles = StyleSheet.create({
-   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column'
-  },
-  counter: {
-    fontSize: 50,
-    marginBottom: 70
-  },
-  reset: {
-    margin: 10,
-    backgroundColor: 'yellow'
-  },
-  start: {
-    margin: 10,
-    backgroundColor: 'yellow'
-  },
-  stop: {
-    margin: 10,
-    backgroundColor: 'yellow'
+export default class Other extends React.Component{
+  constructor() {
+    super();
+    this.state = {
+      showGeo:false
+    };
   }
-});
+  
+  componentDidMount() {
+    if(Platform.OS === "ios"){
+      StatusBar.setBarStyle(0);
+    }
+  }
 
+  _getLocation() {
+    this.setState({
+      showGeo: true
+    })
+  }
+
+	render() {
+		return(
+			<View style={styles.container}>
+        <Map mapTyle="standard" mapStyle={styles.map} showsUserLocation={this.state.showGeo} followUserLocation={this.state.showGeo}></Map>
+        <TouchableHighlight underlayColor="#00bd03" style={styles.btn} onPress={() => this._getLocation()}>
+          <Text style={styles.btnText}><Icon size={18} name="md-navigate"> </Icon> Find my location</Text>
+        </TouchableHighlight>
+      </View>
+		)
+	}
+}
+
+const styles = StyleSheet.create({
+  container:{
+    alignItems: "center",
+    paddingTop: 60
+  },
+  map:{
+    width: deviceWidth,
+    height:deviceHeight-120
+  },
+  btn:{
+    backgroundColor:"#00a803",
+    width: deviceWidth-80,
+    height: 40,
+    borderWidth:2,
+    borderColor: "#009302",
+    borderRadius: 4,
+    justifyContent:"center",
+    marginTop:10
+  },
+  btnText:{
+    textAlign:"center",
+    fontSize:18,
+    color:"#fff"
+  },
+});

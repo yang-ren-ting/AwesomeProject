@@ -24,7 +24,7 @@ export default class AwesomeProject extends Component {
         let store = createStore(reducers,initState);
         return (  
            <Provider store={store}>
-             <AddTodo/>  
+             <Navigator/>  
           </Provider>
          
         );  

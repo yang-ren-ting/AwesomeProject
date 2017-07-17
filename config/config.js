@@ -12,7 +12,7 @@ export const TABS = {
         imgUrl:require('../image/find.png')
     },
     mine:{
-        title:'我的',
+        title:'个人中心',
         imgUrl:require('../image/mine.png')
     },
 }
