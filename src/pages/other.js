@@ -12,7 +12,7 @@ var Geolocation = require('Geolocation');
 var watchID = null
  
 //默认应用的容器组件
-export default class Other extends Component {
+export default class Other extends React.Component {
    //渲染
    render() {
       return (

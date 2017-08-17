@@ -1,89 +1,148 @@
-
-import React, {Component} from 'react';
+import React, {
+    Component,
+} from 'react'
 import {
     StyleSheet,
+    Alert,
     View,
-    FlatList,
     Text,
-    Button,
-} from 'react-native';
+    Dimensions,
+} from 'react-native'
 
-var ITEM_HEIGHT = 100;
+import GesturePassword from 'react-native-smart-gesture-password'
+import Button from 'react-native-smart-button'
 
-export default class Contact extends Component {
+export default class gesturePasswordDemo extends Component {
 
-    _flatList;
-
-    _renderItem = (item) => {
-        var txt = '第' + item.index + '个' + ' title=' + item.item.title;
-        var bgColor = item.index % 2 == 0 ? 'red' : 'blue';
-        return <Text style={[{flex:1,height:ITEM_HEIGHT,backgroundColor:bgColor},styles.txt]}>{txt}</Text>
+    // 构造
+    constructor (props) {
+        super(props);
+        // 初始状态
+        this.state = {
+            isWarning: false,
+            message: 'Verify your gesture password',
+            messageColor: '#A9A9A9',
+            password: '',
+            thumbnails: [],
+        };
+        this._cachedPassword = ''
     }
 
-    _header = () => {
-        return <Text style={[styles.txt,{backgroundColor:'black'}]}>这是头部</Text>;
+    componentDidMount () {
+        this._cachedPassword = '13457' //get cached gesture password
     }
 
-    _footer = () => {
-        return <Text style={[styles.txt,{backgroundColor:'black'}]}>这是尾部</Text>;
-    }
-
-    _separator = () => {
-        return <View style={{height:2,backgroundColor:'yellow'}}/>;
-    }
-
-    render() {
-        var data = [];
-        for (var i = 0; i < 100; i++) {
-            data.push({key: i, title: i + ''});
-        }
-
+    render () {
         return (
-            <View style={{flex:1}}>
-                <Button title='滚动到指定位置' onPress={()=>{
-                    //this._flatList.scrollToEnd();
-                    //this._flatList.scrollToIndex({viewPosition:0,index:8});
-                    this._flatList.scrollToOffset({animated: true, offset: 2000});
-                }}/>
-                <View style={{flex:1}}>
-                    <FlatList
-                        ref={(flatList)=>this._flatList = flatList}
-                        ListHeaderComponent={this._header}
-                        ListFooterComponent={this._footer}
-                        ItemSeparatorComponent={this._separator}
-                        renderItem={this._renderItem}
+            <GesturePassword
+                style={{paddingTop: 20 + 44,}}
+                pointBackgroundColor={'#F4F4F4'}
+                isWarning={this.state.isWarning}
+                color={'#A9A9A9'}
+                activeColor={'#00AAEF'}
+                warningColor={'red'}
+                warningDuration={1500}
+                allowCross={true}
+                topComponent={this._renderDescription()}
+                bottomComponent={this._renderActions()}
+                onFinish={this._onFinish}
+                onReset={this._onReset}
+            />
+        )
+    }
 
-                        //numColumns ={3}
-                        //columnWrapperStyle={{borderWidth:2,borderColor:'black',paddingLeft:20}}
-
-                        //horizontal={true}
-
-                        //getItemLayout={(data,index)=>(
-                        //{length: ITEM_HEIGHT, offset: (ITEM_HEIGHT+2) * index, index}
-                        //)}
-
-                        //onEndReachedThreshold={5}
-                        //onEndReached={(info)=>{
-                        //console.warn(info.distanceFromEnd);
-                        //}}
-
-                        //onViewableItemsChanged={(info)=>{
-                        //console.warn(info);
-                        //}}
-                        data={data}>
-                    </FlatList>
-                </View>
-
+    _renderThumbnails () {
+        let thumbnails = []
+        for (let i = 0; i < 9; i++) {
+            let active = ~this.state.password.indexOf(i)
+            thumbnails.push((
+                <View
+                    key={'thumb-' + i}
+                    style={[
+                        {width: 8, height: 8, margin: 2, borderRadius: 8, },
+                        active ? {backgroundColor: '#00AAEF'} : {borderWidth: 1, borderColor: '#A9A9A9'}
+                    ]}
+                />
+            ))
+        }
+        return (
+            <View style={{width: 38, flexDirection: 'row', flexWrap: 'wrap'}}>
+                {thumbnails}
             </View>
-        );
+        )
     }
-}
 
-const styles = StyleSheet.create({
-    txt: {
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        color: 'white',
-        fontSize: 30,
+    _renderDescription = () => {
+        return (
+            <View style={{height: 158, paddingBottom: 10, justifyContent: 'flex-end', alignItems: 'center',}}>
+                {this._renderThumbnails()}
+                <Text
+                    style={{fontFamily: '.HelveticaNeueInterface-MediumP4', fontSize: 14, marginVertical: 6, color: this.state.messageColor}}>{this.state.message}</Text>
+            </View>
+        )
     }
-});
+
+    _renderActions = () => {
+        return (
+            <View
+                style={{position: 'absolute', bottom: 0, flex:1, justifyContent: 'space-between', flexDirection: 'row', width: Dimensions.get('window').width, }}>
+                <Button
+                    style={{ margin: 10, height: 40, justifyContent: 'center', }}
+                    textStyle={{fontSize: 14, color: '#A9A9A9'}}>
+                    Forget password
+                </Button>
+                <Button
+                    style={{ margin: 10, height: 40, justifyContent: 'center', }}
+                    textStyle={{fontSize: 14, color: '#A9A9A9'}}>
+                    Login other accounts
+                </Button>
+            </View>
+        )
+    }
+
+    _onReset = () => {
+        let isWarning = false
+        //let password = ''
+        let message = 'Verify your gesture password'
+        let messageColor = '#A9A9A9'
+        this.setState({
+            isWarning,
+            //password,
+            message,
+            messageColor,
+        })
+    }
+
+    _onFinish = (password) => {
+        if (password === this._cachedPassword) {
+            let isWarning = false
+            let message = 'Verify succeed'
+            let messageColor = '#00AAEF'
+            this.setState({
+                isWarning,
+                password,
+                message,
+                messageColor,
+            })
+        }
+        else {
+            let isWarning = true
+            let message
+            let messageColor = 'red'
+            if (password.length < 4) {
+                message = 'Need to link at least 4 points'
+            }
+            else {
+                message = 'Verify failed'
+            }
+            this.setState({
+                isWarning,
+                password,
+                message,
+                messageColor,
+            })
+        }
+        Alert.alert('password is ' + password)
+    }
+
+}

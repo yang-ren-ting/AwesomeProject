@@ -22,6 +22,18 @@ export default class Find extends React.Component {
           navigate('Other', { name: 'Jane' })
         }
       />
+      <Button
+        title="计数器redux"
+        onPress={() =>
+          navigate('AddTodo')
+        }
+      />
+        <Button
+        title="手势密码"
+        onPress={() =>
+          navigate('Pastouch')
+        }
+      />
        <FlatList
           data={[
             {key: 'Devin'},

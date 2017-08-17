@@ -25,7 +25,6 @@ class AddTodo extends React.Component {
     }
     render() {
       const { dispatch,num ,text} = this.props
-      alert(text);
       return (
         <View style={styles.container}>
           
