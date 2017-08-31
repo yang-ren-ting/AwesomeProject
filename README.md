@@ -65,6 +65,6 @@ onst TabOptions = (tabBarTitle, normalImage, tintColor, headTitle) => {
 下面我们写tab的navigationOptions属性直接这样即可
 ```
 navigationOptions: () => TabOptions('titile', '图片路径', '图片颜色', '导航标题') 。
-
+```
 后续 https://www.gitbook.com/book/yang-ren-ting/react-native/details
 
